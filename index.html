@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="model dnone">
+        <div class="model-box dflex align-item-center jc-space-between">
+         <h2 class="fs-primary-heading"> I knew that !</h2>   
+         <div>
+            <h2 class="fs-primary-heading">😁</h2>
+         </div>
+        </div>
+    </div>
+        
+ <main>  
+<div class="signup container ">
+    <h1 class="fs-primary-heading margin-b-3 text-align-center text-color-100 ">u;</h1>
+  <div class="flow">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Alice Wood">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="user@gmail.com">
+        </div>
+        <div>
+            <label for="title ">Are you stupid ?</label>
+            <input type="text" id="title" placeholder="Hint: Yes or No">
+        </div>
+        <div class="movingbtn-wrapper " >
+            <button class="button dblock margin-auto fw-500 movingbtn" data-type="primary">Submit</button>
+        </div>
+
+    </div>
+</div>
+</main> 
+<script>
+    const button = document.querySelector(".movingbtn")
+    const contianer = document.querySelector(".movingbtn-wrapper")
+    const text = document.querySelector("[id='title']")  
+    const model = document.querySelector(".model")  
+    const modelbox = document.querySelector(".model-box ")  
+
+    let isMobile = false
+    let pov =  0;
+  
+    text.addEventListener("input", (e)=>{
+       
+    if(e.target.value === "yes")
+    {
+        button.addEventListener("click", ()=>{
+            model.classList.remove("dnone")
+        })
+
+        text.classList.remove("error")
+        button.classList.add("btn_effect")
+        button.removeEventListener("touchstart", listner2)
+        button.removeEventListener("mouseover", listner1)
+    }
+    else{
+        text.classList.add("error")
+        button.classList.remove("btn_effect")
+        button.addEventListener("touchstart", listner2)
+        button.addEventListener("mouseover", listner1)
+       
+    }
+    })
+
+    model.addEventListener("click", ()=>{
+            model.classList.add("dnone")
+        })
+
+
+        modelbox.addEventListener("click", (event)=>{
+            event.stopPropagation()
+        })
+
+    function listner2(){
+        
+       isMobile = true
+        if((pov + 230) > contianer.offsetWidth){
+             let size = Math.ceil((contianer.offsetWidth-80)*0.10)
+             let percentageSizeSmall = 0
+             button.style.left = Math.floor((Math.random() * (size - percentageSizeSmall +1)) + percentageSizeSmall) + "px " ;
+            console.log(button.style.left)
+         }
+        else{
+         let size = contianer.offsetWidth-80
+         let percentageSize = (contianer.offsetWidth-100)*0.70
+         pov = Math.floor(Math.random() * (size - percentageSize + 1) + percentageSize)
+         if(pov>(contianer.offsetWidth))
+         {
+          pov=contianer.offsetWidth-100
+          button.style.left = pov + "px " ;
+         }
+         else{
+             button.style.left =  pov + "px "
+         }
+        }
+        pov =  parseInt(button.style.left, 10);
+    }
+
+    const listner1 = (e)=>{
+        e.stopPropagation()
+        if(!isMobile){
+         if((pov + 230) > contianer.offsetWidth){
+             let size = Math.ceil((contianer.offsetWidth-80)*0.10)
+             let percentageSizeSmall = 0
+             button.style.left = Math.floor((Math.random() * (size - percentageSizeSmall +1)) + percentageSizeSmall) + "px " ;
+        
+         }
+        else{
+         let size = contianer.offsetWidth-80
+         let percentageSize = (contianer.offsetWidth-100)*0.70
+         pov = Math.floor(Math.random() * (size - percentageSize + 1) + percentageSize)
+         if(pov>(contianer.offsetWidth))
+         {
+          pov=contianer.offsetWidth-100
+          button.style.left = pov + "px " ;
+         }
+         else{
+             button.style.left =  pov + "px "
+         }
+        }
+        pov =  parseInt(button.style.left, 10);
+    }
+  }
+
+    button.addEventListener("touchstart", listner2)
+    button.addEventListener("mouseover" ,listner1 )
+ 
+   
+   
+</script>
+</body>
+</html>
