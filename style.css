@@ -551,7 +551,7 @@ input{
   }
 }
 
-@media(max-width:15em)
+@media(max-width:317px)
 {
   .model-box{
     padding: 10px;
