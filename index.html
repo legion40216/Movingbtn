@@ -54,9 +54,7 @@
        
     if(e.target.value === "yes")
     {
-        button.addEventListener("click", ()=>{
-            model.classList.remove("dnone")
-        })
+        button.addEventListener("click",listner3)
 
         text.classList.remove("error")
         button.classList.add("btn_effect")
@@ -68,6 +66,7 @@
         button.classList.remove("btn_effect")
         button.addEventListener("touchstart", listner2)
         button.addEventListener("mouseover", listner1)
+        button.removeEventListener("click",listner3)
        
     }
     })
@@ -75,11 +74,15 @@
     model.addEventListener("click", ()=>{
             model.classList.add("dnone")
         })
-
-
         modelbox.addEventListener("click", (event)=>{
             event.stopPropagation()
         })
+
+
+function listner3(){
+    model.classList.remove("dnone")
+}
+
 
     function listner2(){
         
